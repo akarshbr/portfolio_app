@@ -4,12 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: ProfilePage(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -21,8 +15,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final Uri _urlGitHub = Uri.parse('https://github.com/akarshbr');
   final Uri _urlGitLab = Uri.parse('https://gitlab.com/akarshbr');
-  final Uri _urlLinkedIn =
-      Uri.parse('https://www.linkedin.com/in/akarsh-b-rajeev/');
+  final Uri _urlLinkedIn = Uri.parse('https://www.linkedin.com/in/akarsh-b-rajeev/');
 
   Future<void> _launchGitHub() async {
     if (!await launchUrl(_urlGitHub)) {
@@ -79,14 +72,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                   width: MediaQuery.of(context).size.width / 2,
                   height: MediaQuery.of(context).size.width / 2,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: AssetImage("assets/dp/IMG_4274.heic"),
+                          image: AssetImage("assets/dp/dp2.jpg"),
                           scale: 5,
                           fit: BoxFit.cover)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
@@ -97,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           await _launchGitHub();
                         },
                         highlightColor: Colors.transparent,
-                        icon: FaIcon(
+                        icon: const FaIcon(
                           FontAwesomeIcons.squareGithub,
                           size: 50,
                           color: Colors.black,
@@ -107,7 +100,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           await _launchGitLab();
                         },
                         highlightColor: Colors.transparent,
-                        icon: FaIcon(
+                        icon: const FaIcon(
                           FontAwesomeIcons.squareGitlab,
                           size: 50,
                           color: Colors.orange,
@@ -117,7 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           await _launchLinkedIn();
                         },
                         highlightColor: Colors.transparent,
-                        icon: FaIcon(
+                        icon: const FaIcon(
                           FontAwesomeIcons.linkedin,
                           size: 50,
                           color: Colors.blue,
@@ -128,11 +121,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     children: [
                       Card(
-                        margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
                         color: Colors.blue.shade100,
                         child: ListTile(
                           onTap: (){},
-                          leading: Icon(
+                          leading: const Icon(
                             Icons.email_outlined,
                             color: Colors.black,
                           ),
@@ -148,11 +141,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Card(
-                        margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
                         color: Colors.blue.shade100,
                         child: ListTile(
                           onTap: (){},
-                          leading: FaIcon(FontAwesomeIcons.whatsapp,
+                          leading: const FaIcon(FontAwesomeIcons.whatsapp,
                               color: Colors.black),
                           title: Text(
                             "Phone",
@@ -166,10 +159,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Card(
-                        margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+                        margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
                         color: Colors.blue.shade100,
                         child: ListTile(
-                          leading: Icon(Icons.maps_home_work_outlined,
+                          leading: const Icon(Icons.maps_home_work_outlined,
                               color: Colors.black),
                           title: Text(
                             "Address",
