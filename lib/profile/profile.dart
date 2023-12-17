@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:get/get.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -13,10 +14,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
   final Uri _urlGitHub = Uri.parse('https://github.com/akarshbr');
   final Uri _urlGitLab = Uri.parse('https://gitlab.com/akarshbr');
-  final Uri _urlLinkedIn = Uri.parse('https://www.linkedin.com/in/akarsh-b-rajeev/');
-
+  final Uri _urlLinkedIn =
+  Uri.parse('https://www.linkedin.com/in/akarsh-b-rajeev/');
   Future<void> _launchGitHub() async {
     if (!await launchUrl(_urlGitHub)) {
       throw Exception("Could Not launch $_urlGitHub");
@@ -35,8 +37,19 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  final emailController = Get.put(EmailController());
+  final phoneController = Get.put(PhoneController());
+  final addressController = Get.put(AddressController());
+  final TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _phonecontroller = TextEditingController();
+  final TextEditingController _addresscontroller = TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
+    emailController.getData("akarshbrajeev@gmail.com");
+    phoneController.getData("8848743137");
+    addressController.getData("SuryaKiran, Nuchilod, PO Eachur, Kannur, 670591");
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -54,11 +67,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Text(
                       "Profile",
                       style: GoogleFonts.poppins(
-                        fontSize: 40,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 1
-                      ),
+                          fontSize: 40,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          shadows: [const Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
+                          letterSpacing: 1),
                     )),
                   ),
                 ),
@@ -66,7 +79,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Text(
                     "Akarsh B Rajeev",
                     style: GoogleFonts.poppins(
-                        fontSize: 50, fontWeight: FontWeight.w500),
+                        fontSize: 50,
+                        fontWeight: FontWeight.w500,
+                        shadows: [
+                          const Shadow(
+                              color: Colors.black12,
+                              blurRadius: 3,
+                              offset: Offset(3, 3))
+                        ]),
                   ),
                 ),
                 Container(
@@ -94,6 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           FontAwesomeIcons.squareGithub,
                           size: 50,
                           color: Colors.black,
+                          shadows: [Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
                         )),
                     IconButton(
                         onPressed: () async {
@@ -104,6 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           FontAwesomeIcons.squareGitlab,
                           size: 50,
                           color: Colors.orange,
+                          shadows: [Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
                         )),
                     IconButton(
                         onPressed: () async {
@@ -114,6 +136,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           FontAwesomeIcons.linkedin,
                           size: 50,
                           color: Colors.blue,
+                          shadows: [Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
                         ))
                   ],
                 ),
@@ -121,10 +144,16 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     children: [
                       Card(
-                        margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        margin:
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        elevation: 5,
                         color: Colors.blue.shade100,
                         child: ListTile(
-                          onTap: (){},
+                          onLongPress: () {
+                            _emailcontroller.text = emailController.data.value;
+                            Clipboard.setData(ClipboardData(text: _emailcontroller.text));
+                            Get.snackbar("Copied", "Text Copied",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red);
+                          },
                           leading: const Icon(
                             Icons.email_outlined,
                             color: Colors.black,
@@ -141,10 +170,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Card(
-                        margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        margin:
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        elevation: 5,
                         color: Colors.blue.shade100,
                         child: ListTile(
-                          onTap: (){},
+                          onLongPress: () {
+                            _phonecontroller.text = phoneController.data.value;
+                            Clipboard.setData(ClipboardData(text: _phonecontroller.text));
+                            Get.snackbar("Copied", "Text Copied",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red);
+                          },
                           leading: const FaIcon(FontAwesomeIcons.whatsapp,
                               color: Colors.black),
                           title: Text(
@@ -159,9 +194,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Card(
-                        margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        margin:
+                            const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        elevation: 5,
                         color: Colors.blue.shade100,
                         child: ListTile(
+                          onLongPress: (){
+                            _addresscontroller.text = addressController.data.value;
+                            Clipboard.setData(ClipboardData(text: _addresscontroller.text));
+                            Get.snackbar("Copied", "Text Copied",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red);
+                          },
                           leading: const Icon(Icons.maps_home_work_outlined,
                               color: Colors.black),
                           title: Text(
@@ -184,5 +226,24 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       ),
     );
+  }
+}
+
+class EmailController extends GetxController{
+  var data = ''.obs;
+  void getData(newData){
+    data.value = newData;
+  }
+}
+class PhoneController extends GetxController{
+  var data = ''.obs;
+  void getData(newData){
+    data.value = newData;
+  }
+}
+class AddressController extends GetxController{
+  var data = ''.obs;
+  void getData(newData){
+    data.value = newData;
   }
 }
