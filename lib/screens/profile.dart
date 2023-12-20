@@ -14,11 +14,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   final Uri _urlGitHub = Uri.parse('https://github.com/akarshbr');
   final Uri _urlGitLab = Uri.parse('https://gitlab.com/akarshbr');
   final Uri _urlLinkedIn =
-  Uri.parse('https://www.linkedin.com/in/akarsh-b-rajeev/');
+      Uri.parse('https://www.linkedin.com/in/akarsh-b-rajeev/');
+
   Future<void> _launchGitHub() async {
     if (!await launchUrl(_urlGitHub)) {
       throw Exception("Could Not launch $_urlGitHub");
@@ -44,12 +44,12 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController _phonecontroller = TextEditingController();
   final TextEditingController _addresscontroller = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     emailController.getData("akarshbrajeev@gmail.com");
     phoneController.getData("8848743137");
-    addressController.getData("SuryaKiran, Nuchilod, PO Eachur, Kannur, 670591");
+    addressController
+        .getData("SuryaKiran, Nuchilod, PO Eachur, Kannur, 670591");
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -61,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ClipPath(
                   clipper: WaveClipperOne(),
                   child: Container(
-                    height: 250,
+                    height: 230,
                     color: Colors.blue.shade200,
                     child: Center(
                         child: Text(
@@ -70,7 +70,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 40,
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
-                          shadows: [const Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
+                          shadows: [
+                            const Shadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(4, 4))
+                          ],
                           letterSpacing: 1),
                     )),
                   ),
@@ -88,6 +93,23 @@ class _ProfilePageState extends State<ProfilePage> {
                               offset: Offset(3, 3))
                         ]),
                   ),
+                ),
+                Center(
+                  child: Text(
+                    "Mobile App Developer",
+                    style: GoogleFonts.poppins(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w500,
+                        shadows: [
+                          const Shadow(
+                              color: Colors.black12,
+                              blurRadius: 3,
+                              offset: Offset(3, 3))
+                        ]),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width / 2,
@@ -114,7 +136,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           FontAwesomeIcons.squareGithub,
                           size: 50,
                           color: Colors.black,
-                          shadows: [Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
+                          shadows: [
+                            Shadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(4, 4))
+                          ],
                         )),
                     IconButton(
                         onPressed: () async {
@@ -125,7 +152,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           FontAwesomeIcons.squareGitlab,
                           size: 50,
                           color: Colors.orange,
-                          shadows: [Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
+                          shadows: [
+                            Shadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(4, 4))
+                          ],
                         )),
                     IconButton(
                         onPressed: () async {
@@ -136,7 +168,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           FontAwesomeIcons.linkedin,
                           size: 50,
                           color: Colors.blue,
-                          shadows: [Shadow(color: Colors.black12,blurRadius: 5,offset: Offset(4, 4))],
+                          shadows: [
+                            Shadow(
+                                color: Colors.black12,
+                                blurRadius: 5,
+                                offset: Offset(4, 4))
+                          ],
                         ))
                   ],
                 ),
@@ -151,8 +188,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: ListTile(
                           onLongPress: () {
                             _emailcontroller.text = emailController.data.value;
-                            Clipboard.setData(ClipboardData(text: _emailcontroller.text));
-                            Get.snackbar("Copied", "Text Copied",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red);
+                            Clipboard.setData(
+                                ClipboardData(text: _emailcontroller.text));
+                            Get.snackbar("Copied", "Email Copied",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.greenAccent,
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 20));
                           },
                           leading: const Icon(
                             Icons.email_outlined,
@@ -177,8 +219,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: ListTile(
                           onLongPress: () {
                             _phonecontroller.text = phoneController.data.value;
-                            Clipboard.setData(ClipboardData(text: _phonecontroller.text));
-                            Get.snackbar("Copied", "Text Copied",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red);
+                            Clipboard.setData(
+                                ClipboardData(text: _phonecontroller.text));
+                            Get.snackbar("Copied", "Phone Number Copied",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.greenAccent,
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 20));
                           },
                           leading: const FaIcon(FontAwesomeIcons.whatsapp,
                               color: Colors.black),
@@ -194,15 +241,24 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Card(
-                        margin:
-                            const EdgeInsets.only(left: 10, right: 10, top: 10),
+                        margin: const EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                          top: 10,
+                        ),
                         elevation: 5,
                         color: Colors.blue.shade100,
                         child: ListTile(
-                          onLongPress: (){
-                            _addresscontroller.text = addressController.data.value;
-                            Clipboard.setData(ClipboardData(text: _addresscontroller.text));
-                            Get.snackbar("Copied", "Text Copied",snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.red);
+                          onLongPress: () {
+                            _addresscontroller.text =
+                                addressController.data.value;
+                            Clipboard.setData(
+                                ClipboardData(text: _addresscontroller.text));
+                            Get.snackbar("Copied", "Address Copied",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: Colors.greenAccent,
+                                margin:
+                                    const EdgeInsets.fromLTRB(10, 10, 10, 20));
                           },
                           leading: const Icon(Icons.maps_home_work_outlined,
                               color: Colors.black),
@@ -229,21 +285,26 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
-class EmailController extends GetxController{
+class EmailController extends GetxController {
   var data = ''.obs;
-  void getData(newData){
+
+  void getData(newData) {
     data.value = newData;
   }
 }
-class PhoneController extends GetxController{
+
+class PhoneController extends GetxController {
   var data = ''.obs;
-  void getData(newData){
+
+  void getData(newData) {
     data.value = newData;
   }
 }
-class AddressController extends GetxController{
+
+class AddressController extends GetxController {
   var data = ''.obs;
-  void getData(newData){
+
+  void getData(newData) {
     data.value = newData;
   }
 }
